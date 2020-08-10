@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get random tonality</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Random tonality</h1>
+	<button id="button">Get!</button>
+	<p id="tonality" class="p"></p>
+	<h2 id="aditionalSetingB">Дополнительные настройки</h3>
+	<div id="aditionalSeting">
+		<h3>Какие знаки в тональности?</h2>
+		<div class="seting">
+			<p><input id="is" type="radio" name="seting1" value="seting1">is ♯</p>
+			<p><input id="es" type="radio" name="seting1" value="seting1">es ♭</p>
+			<p><input id="all1" type="radio" name="seting1" value="seting1" checked="">все</p>
+		</div>
+		<h3>Выводить moll вместе с dur?</h2>
+		<div class="seting">
+			<p><input id="yes" type="radio" name="seting3" checked="">да</p>
+			<p><input id="no" type="radio" name="seting3">нет</p>
+		</div>
+		<h3>До сколки знаков в тональности?</h2>
+		<div class="seting">
+			<p><input type="radio" name="seting2" id="0">0</p>
+			<p><input type="radio" name="seting2" id="1">1</p>
+			<p><input type="radio" name="seting2" id="2">2</p>
+			<p><input type="radio" name="seting2" id="3">3</p>
+			<p><input type="radio" name="seting2" id="4">4</p>
+			<p><input type="radio" name="seting2" id="5">5</p>
+			<p><input type="radio" name="seting2" id="6">6</p>
+			<p><input type="radio" name="seting2" id="7" checked="">7</p>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+	<script type="text/javascript">
+
+		var durIs = ["C-dur","G-dur","D-dur","A-dur","E-dur","H-dur","Fis-dur","Cis-dur"];
+		var durEs = ["C-dur","F-dur","B-dur","Es-dur","As-dur","Des-dur","Ges-dur","Ces-dur"];
+		var mollIs = ["a-moll","e-moll","h-moll","fis-moll","cis-moll","gis-moll","dis-moll","ais-moll"];
+		var mollEs = ["a-moll","d-moll","g-moll","c-moll","f-moll","b-moll","es-moll","as-moll"];
+		
+		var getRandomNumber = function (n) {
+			return Math.floor(Math.random() * n);
+		};
+
+		var tonalityKeys = 2;
+		var howManyKeys = 8;
+		var withOrWithoutMoll = 1;
+
+		var getTonality = function (keys, durOrMoll, withOrWithout) {
+			if (durOrMoll == 0) {
+				var a = getRandomNumber(keys);
+				var tonality = durIs[a];
+				if (withOrWithout == 1) {
+					return tonality += " - " + mollIs[a];
+				} else {return tonality;}
+			} else if (durOrMoll == 1) {
+				var a = getRandomNumber(keys);
+				var tonality = durEs[a];
+				if (withOrWithout == 1) {
+					return tonality += " - " + mollEs[a];
+				} else {return tonality;}
+			} else {
+				var b = getRandomNumber(2);
+				if (b == 0) {
+					var a = getRandomNumber(keys);
+					var tonality = durIs[a];
+					if (withOrWithout == 1) {
+						return tonality += " - " + mollIs[a];
+					} else {return tonality;}
+				} else {
+					var a = getRandomNumber(keys);
+					var tonality = durEs[a];
+					if (withOrWithout == 1) {
+						return tonality += " - " + mollEs[a];
+					} else {return tonality;}
+				}
+			}
+		};
+
+		$("#yes").click( function () {withOrWithoutMoll = 1});
+		$("#no").click( function () {withOrWithoutMoll = 0});
+
+		$("#dur").click( function () {whatTonality = 0});
+		$("#moll").click( function () {whatTonality = 1});
+		$("#all2").click( function () {whatTonality = 2});
+
+		$("#0").click( function () {howManyKeys = 1});
+		$("#1").click( function () {howManyKeys = 2});
+		$("#2").click( function () {howManyKeys = 3});
+		$("#3").click( function () {howManyKeys = 4});
+		$("#4").click( function () {howManyKeys = 5});
+		$("#5").click( function () {howManyKeys = 6});
+		$("#6").click( function () {howManyKeys = 7});
+		$("#7").click( function () {howManyKeys = 8});
+
+		$("#button").click( function () {
+			$("#tonality").text(getTonality(howManyKeys, tonalityKeys, withOrWithoutMoll));
+		});
+
+		var develop = 1;
+		$("#aditionalSeting").slideUp(5);
+
+		$("#aditionalSetingB").click( function () {
+			if (develop == 0) {
+				develop = 1;
+				$("#aditionalSeting").slideUp(1500);
+			} else {
+				develop = 0;
+				$("#aditionalSeting").slideDown(1500);
+			}
+		})
+	</script>
+</body>
+</html>

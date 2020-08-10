@@ -1,0 +1,50 @@
+body {
+	font-family: Dancing Script;
+	margin: 0px;
+}
+h1 {
+	display: flex;
+	justify-content: center;
+}
+button {
+	width: 100%;
+	padding: 10px 20px;
+	border: none;
+	background-color: #fcd1ae;
+	font-size: 15pt;
+	cursor: pointer;
+	transition: 0.3s;
+}
+button:active {
+	border: none;
+	background-color: #ffa459;
+	transition: 0.3s;
+}
+.p {
+	display: flex;
+	justify-content: center;
+	padding: 20px 20px;
+	background-color: #fcd1ae;
+	font-size: 20pt;
+}
+h2 {
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+}
+h3 {
+	display: flex;
+	justify-content: center;
+}
+i {
+	font-family: Dancing Script;
+}
+.seting {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+#aditionalSeting {
+	background-color: #fcd1ae;
+	padding: 20px 20px;
+}
